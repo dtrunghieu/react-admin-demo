@@ -1,38 +1,17 @@
-.App {
-  text-align: center;
-}
+/* Import CSS variables first */
+@import './styles/variables.css';
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* Import base styles */
+@import './styles/base.css';
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* Import typography styles */
+@import './styles/typography.css';
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* Import layout styles */
+@import './styles/layout.css';
 
-.App-link {
-  color: #61dafb;
-}
+/* Import component styles */
+@import './styles/components.css';
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* Import utility styles last so they can override other styles */
+@import './styles/utilities.css';
