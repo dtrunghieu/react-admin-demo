@@ -23,4 +23,4 @@ COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 8080
 
 # Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "sed -i -e 's/$PORT/'\"$PORT\"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
