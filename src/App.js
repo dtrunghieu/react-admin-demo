@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Layout from './components/GeneralComponents/Layout';
 import Card from './components/GeneralComponents/Card';
