@@ -26,4 +26,4 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8080
 
 # Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", "sed -i 's/listen 8080;/listen ${PORT};/' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
