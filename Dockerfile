@@ -1,5 +1,6 @@
-# Use official Node.js image as the build environment
-FROM node:20-alpine AS build
+
+# Use official Node.js image
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -13,17 +14,11 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-# Use official Nginx image to serve the build
-FROM nginx:alpine
-
-# Copy built files to Nginx web root
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Copy custom Nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Install serve to run the static build
+RUN npm install -g serve
 
 # Expose port 8080
 EXPOSE 8080
 
-# Start Nginx server
-CMD ["sh", "-c", "sed -i 's/listen 8080;/listen ${PORT};/' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+# Start the app with serve
+CMD ["serve", "-s", "build", "-l", "8080"]
