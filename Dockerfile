@@ -19,8 +19,11 @@ FROM nginx:alpine
 # Copy built files to Nginx web root
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose port 80
+# Copy custom Nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 8080
 EXPOSE 8080
 
 # Start Nginx server
-CMD ["sh", "-c", "sed -i -e 's/$PORT/'\"$PORT\"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+CMD ["nginx", "-g", "daemon off;"]
